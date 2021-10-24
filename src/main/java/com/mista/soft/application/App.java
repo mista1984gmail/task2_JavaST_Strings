@@ -29,7 +29,8 @@ public class App {
             log.info("Enter 4 to show all sentences");//
             log.info("Enter 5 to show all words");//
             log.info("Enter 6 to sort sentences in ascending order of length");//task2JavaST Strings #2
-            log.info("Enter 7 to sort words of the text starting with vowels in alphabetical order according to the first consonant of the word.");//task2JavaST Strings #8
+            log.info("Enter 7 to sort words of the text starting with vowels in alphabetical ordern\n" +
+                    "according to the first consonant of the word.");//task2JavaST Strings #8
             log.info("Enter 8 to print the words of the text in alphabetical order first\n" +
                     " letter. Words beginning with a new letter should be printed on the red line.");//task2JavaST Strings #6
 
@@ -101,16 +102,11 @@ public class App {
 
     private static void enterFileWithText() {
         Scanner scannerForFile = new Scanner(System.in);
-        log.info("Enter file path or use the default file and then type \"default\"");
-        //C:\\Users\\USER\\Desktop\\text.txt
+        log.info("Enter file path");
         String path=scannerForFile.nextLine();
-        if (path.equals("default")){
-            String PATH = "src\\main\\java\\com\\mista\\soft\\resources\\text.txt";
-            TEXT=initialization(PATH);
-        }
-        else {
+
             TEXT=initialization(path);
-        }
+
     }
 
     private static String initialization(final String path) {
