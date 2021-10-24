@@ -16,9 +16,6 @@ public class App {
     public static final TextServiceImpl TEXT_SERVICE = new TextServiceImpl();
     public static String TEXT ="";
     public static void main(String[] args) {
-        //String PATH = "src\\main\\java\\com\\mista\\soft\\resources\\text.txt";
-
-        //String text = initialization(PATH);
 
         int userInput = 0;
 
@@ -31,10 +28,10 @@ public class App {
             log.info("Enter 3 to show all text");//
             log.info("Enter 4 to show all sentences");//
             log.info("Enter 5 to show all words");//
-            log.info("Enter 6 to sort sentences in ascending order of length");//
-            log.info("Enter 7 to sort words of the text starting with vowels in alphabetical order according to the first consonant of the word.");//
+            log.info("Enter 6 to sort sentences in ascending order of length");//task2JavaST Strings #2
+            log.info("Enter 7 to sort words of the text starting with vowels in alphabetical order according to the first consonant of the word.");//task2JavaST Strings #8
             log.info("Enter 8 to print the words of the text in alphabetical order first\n" +
-                    " letter. Words beginning with a new letter should be printed on the red line.");//
+                    " letter. Words beginning with a new letter should be printed on the red line.");//task2JavaST Strings #6
 
             System.out.println("_______________________________________________________________________");
             // reading input
@@ -79,15 +76,6 @@ public class App {
     private static void printWords() {
         TextAll textAll = new TextAll(TEXT);
         TEXT_SERVICE.printWordsOnAlphabet(textAll);
-
-    }
-
-    private static void removeFromTheText() {
-        TextAll textAll = new TextAll(TEXT);
-        Scanner scannerLenght = new Scanner(System.in);
-        log.info("enter word length");
-        int lenghtWord = scannerLenght.nextInt();
-        TEXT_SERVICE.removeFromTextWords(textAll,lenghtWord);
 
     }
 

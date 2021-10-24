@@ -16,7 +16,6 @@ public interface TextService {
     void showAllWords(TextAll textAll);
     void sortSentencesOfLength(TextAll textAll);
     void sortWordsStartingWithVowels(TextAll textAll);
-    void removeFromTextWords(TextAll textAll, int lenghtWord);
     void replaceAll(StringBuilder builder, String from, String to);
     void printWordsOnAlphabet(TextAll textAll);
 

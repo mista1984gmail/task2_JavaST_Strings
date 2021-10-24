@@ -17,20 +17,20 @@ public class TextServiceImpl implements TextService{
     private static final Logger LOGGER = LoggerFactory.getLogger(TextServiceImpl.class);
     @Override
     public List<Paragraph> splitTextIntoParagraphs(String text) {
-        //LOGGER.debug("Trying to fill in the text into paragraphs");
+        LOGGER.debug("Trying to fill in the text into paragraphs");
         String [] mussParagraph= text.split("\n");//divide into paragraphs
         List<Paragraph> listParagraph = new ArrayList<>();
 
         for (int i = 0; i < mussParagraph.length; i++) {
             listParagraph.add(new Paragraph(mussParagraph[i]));
         }
-        //LOGGER.debug("Divided the text into paragraphs");
+        LOGGER.debug("Divided the text into paragraphs");
         return listParagraph;
     }
 
     @Override
     public List<Sentence> splitTextIntoSentences(Paragraph paragraph) {
-        //LOGGER.debug("Trying divide paragraphs into sentences");
+        LOGGER.debug("Trying divide paragraphs into sentences");
         String paragraphText = paragraph.getText();
         paragraphText=paragraphText.replaceAll("[-.?!)(,:]{0,3}$","");
         paragraphText=paragraphText.replaceAll("[\\s]+$","");
@@ -40,13 +40,13 @@ public class TextServiceImpl implements TextService{
         for (int i = 0; i < mussSentence.length; i++) {
             listSentence.add(new Sentence(mussSentence[i].replaceFirst("^\\s++","")));
         }
-        //LOGGER.debug("Divided paragraphs into sentences");
+        LOGGER.debug("Divided paragraphs into sentences");
         return listSentence;
     }
 
     @Override
     public List<String> splitSentenceIntoWords(Sentence sentence) {
-        //LOGGER.debug("Trying divide sentences into words");
+        LOGGER.debug("Trying divide sentences into words");
         String sentenceText = sentence.getText();
         sentenceText=sentenceText.replaceAll("[-.?!)(,:]{0,1}$","");//remove the last punctuation mark
         String [] arrayString=sentenceText.split("[-.?!)(,:]{0,1}\\s");//divide into words
@@ -54,7 +54,7 @@ public class TextServiceImpl implements TextService{
         for (int i = 0; i < arrayString.length; i++) {
             listWord.add(arrayString[i]);
         }
-        //LOGGER.debug("Split sentences into words");
+        LOGGER.debug("Split sentences into words");
         return listWord;
     }
 
@@ -175,48 +175,6 @@ public class TextServiceImpl implements TextService{
         textWithWordsOnlyVowels.stream().forEach(c-> System.out.println(c));
 
     }
-
-    @Override
-    public void removeFromTextWords(TextAll textAll, int lenghtWord) {
-        LOGGER.info("remove from the text all words of a given length beginning with a consonant letter.");
-        String string = textAll.getText();
-
-        List<Paragraph> paragraphList=splitTextIntoParagraphs(string);
-        List<String>allWordsList=new ArrayList<>();
-
-        for (Paragraph paragraph:paragraphList) {
-            List<Sentence>sentenceList=splitTextIntoSentences(paragraph);
-            for (Sentence sentence:sentenceList) {
-                List<String>stringList=splitSentenceIntoWords(sentence);
-                for (String str:stringList) {
-                    allWordsList.add(str);
-                }
-            }
-        }
-        Pattern pattern = Pattern.compile("^[AEIOUYaeiouy]");
-        List<String>textWithWordsOnlyVowels=new ArrayList<>();
-        for (String word : allWordsList) {
-            Matcher matcher = pattern.matcher(word);
-            if (matcher.find()) {
-                textWithWordsOnlyVowels.add(word);
-            }
-        }
-
-        List<String>listForDelete=new ArrayList<>();
-        for (String word : textWithWordsOnlyVowels) {
-            if (word.length()==lenghtWord) {
-                listForDelete.add(word);
-            }
-        }
-        listForDelete.stream().forEach(c-> System.out.println(c));
-        StringBuilder sb = new StringBuilder(string);
-        for (String str:listForDelete) {
-            System.out.println(str);
-            replaceAll(sb," "+str,"");
-        }
-        System.out.println(sb);
-    }
-
 
 
     @Override
